@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.dinadurykina.skylexicon.ui.search.SkySearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.search.SkySearchFragment">
+
+        <EditText
+            android:id="@+id/slovo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@={viewModel.slovo}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> viewModel.onSearchGo(viewModel.slovo)}"
+            tools:ignore="MissingConstraints"
+            android:imeOptions="actionGo"/>
+
+        <TextView
+            android:id="@+id/recycler_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.valueOf(viewModel.wordsListRecycler.size())}'
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_sky"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/slovo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:wordListData="@{viewModel.wordsListRecycler}"
+            tools:listitem="@layout/row_item_sky_search"
+            tools:itemCount="8"/>
+            <!-- app:listData зовется из BindingAdapters.kt
+            и заменяет skySearchAdapter.submitList(it) в фрагменте -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

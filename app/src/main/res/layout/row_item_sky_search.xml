@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Макет для одного элемента данных -->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="word"
+            type="com.dinadurykina.skylexicon.network.WordRecycler" />
+
+        <variable
+            name="viewmodel"
+            type="com.dinadurykina.skylexicon.ui.search.SkySearchViewModel" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/teal_200"
+        android:layout_marginStart="@dimen/margin_medium"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="0dp"
+        android:onClick="@{() -> viewmodel.onSkySearchClicked(word.idRus)}"
+        android:textSize="@dimen/text_size"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="15dp">
+        <!--android:layout_marginRight="@dimen/margin_medium"-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--android:scrollbarDefaultDelayBeforeFade="400"-->
+
+            <ImageButton
+                android:id="@+id/sky_image_previewUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:elevation="2dp"
+                android:onClick="@{() -> viewmodel.onSkyImageClicked(word.imageUrl)}"
+                android:padding="2dp"
+                android:scaleType="fitXY"
+                app:imageUrl="@{word.previewUrl}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <ImageButton
+                android:id="@+id/button_sound"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/teal_200"
+                android:onClick="@{() -> viewmodel.onClickSound(word.soundUrl)}"
+                android:src="@drawable/ic_baseline_volume_up_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{word.idRus}"
+                android:textSize="@dimen/text_size"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1938" />
+
+            <LinearLayout
+                android:id="@+id/linear_temp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/sky_image_previewUrl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/text_eng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{word.textEng}"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textColor="#7A8585"
+                    android:textSize="12sp"
+                    tools:text="chair" />
+
+                <TextView
+                    android:id="@+id/text_rus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{word.textRus}"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="@dimen/text_size"
+                    tools:text="должность профессор" />
+
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{word.note}"
+                    android:visibility="@{word.isNote? View.GONE : View.VISIBLE }"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textColor="#303F9F"
+                    android:textSize="12sp"
+                    tools:text="в оркестре" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/transcription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{word.transcription}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="@dimen/text_size"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_sound"
+                tools:text="bɑːθ ʧeə" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

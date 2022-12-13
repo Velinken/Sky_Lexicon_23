@@ -1,0 +1,18 @@
+// bildgradle Project
+// https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics?index=..%2F..index#7
+// https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles#0
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20" //1.7.20" //1.6.10" //  "1.5.30-RC for result
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.dinadurykina.skylexicon.ui.meanings.SkyMeaningsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.meanings.SkyMeaningsFragment">
+        <!--каждое поле название и значение в строку примитив, поменять на материал Edit -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sky_image"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:padding="2dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:imageListData="@{viewModel.imagesListRecycler}"
+            tools:itemCount="3"
+            tools:listitem="@layout/row_item_image_meaning"
+            tools:src="@tools:sample/backgrounds/scenic"/>
+
+        <TextView
+            android:id="@+id/imagessize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewModel.meaning.images.size)}"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wordId" />
+
+        <ImageButton
+            android:id="@+id/slovo_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickSound(viewModel.meaning.soundUrl)}"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintBottom_toBottomOf="@id/sky_image"
+            app:layout_constraintRight_toRightOf="@id/sky_image" />
+
+        <TextView
+            android:id="@+id/prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.meaning.isPrefix? View.VISIBLE : View.GONE  }"
+            android:text='@{ viewModel.meaning.prefix  + " "}'
+            android:textSize="22sp"
+            app:layout_constraintLeft_toRightOf="@id/sky_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="null" />
+
+        <TextView
+            android:id="@+id/slovo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.meaning.text}"
+            android:textSize="22sp"
+            app:layout_constraintLeft_toRightOf="@id/prefix"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Chair" />
+
+        <TextView
+            android:id="@+id/translation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text='@{viewModel.meaning.translation.text + " "}'
+            android:textSize="22sp"
+            app:layout_constraintLeft_toRightOf="@id/sky_image"
+            app:layout_constraintTop_toBottomOf="@id/slovo"
+            tools:text="стул" />
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.meaning.translation.isNote? View.VISIBLE : View.GONE }"
+            android:text='@{ viewModel.meaning.translation.note }'
+            android:textSize="22sp"
+            app:layout_constraintLeft_toLeftOf="@id/translation"
+            app:layout_constraintTop_toBottomOf="@id/translation" />
+
+        <TextView
+            android:id="@+id/ids"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="end"
+            android:text="@{viewModel.ids}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1938" />
+
+        <TextView
+            android:id="@+id/wordId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="end"
+            android:text='@{String.valueOf(viewModel.meaning.wordId)}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ids"
+            tools:text="838" />
+
+
+        <TextView
+            android:id="@+id/partOfSpeechCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{" part = " + viewModel.meaning.partOfSpeechCodeRus}'
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/mnemonics"
+            app:layout_constraintLeft_toRightOf="@id/sky_image"
+            tools:text="partOfSpeechCode = preposition" />
+
+        <TextView
+            android:id="@+id/mnemonics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{" mnemonics= " + viewModel.meaning.mnemonics}'
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/difficultyLevel"
+            app:layout_constraintLeft_toRightOf="@id/sky_image" />
+
+        <TextView
+            android:id="@+id/difficultyLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{" difficultyLevel = " + String.valueOf(viewModel.meaning.difficultyLevel)}'
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/transcription"
+            app:layout_constraintLeft_toRightOf="@id/sky_image" />
+
+        <TextView
+            android:id="@+id/transcription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{" transcription= " + viewModel.meaning.transcription}'
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/sky_image"
+            app:layout_constraintLeft_toRightOf="@id/sky_image"
+            tools:text="transcription= preposition" />
+
+        <TextView
+            android:id="@+id/updatedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="end"
+            android:text="@{viewModel.meaning.updatedAt}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="2021-02-10 04:49:35" />
+
+        <ImageButton
+            android:id="@+id/definition_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickSound(viewModel.meaning.definition.soundUrl)}"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slovo_sound" />
+
+        <TextView
+            android:id="@+id/Definition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:text='@{viewModel.meaning.definition.text}'
+            android:textSize="22sp"
+            app:layout_constraintLeft_toRightOf="@id/definition_sound"
+            app:layout_constraintTop_toTopOf="@id/definition_sound" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_meaning_sky"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="2dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/Definition"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:meaningListData="@{viewModel.dataItem}"
+            tools:itemCount="8"
+            tools:listitem="@layout/row_item_example_meaning"
+            tools:src="@tools:sample/backgrounds/scenic"/>
+
+        <TextView
+            android:id="@+id/meaningsWithSimilarTranslationsize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewModel.meaning.meaningsWithSimilarTranslation.size)}"
+            app:layout_constraintTop_toBottomOf="@id/imagessize"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="2dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/examplessize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewModel.meaning.examples.size)}"
+            android:padding="2dp"
+            app:layout_constraintTop_toBottomOf="@id/meaningsWithSimilarTranslationsize"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/alternativeTranslationssize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewModel.meaning.alternativeTranslations.size)}"
+            android:padding="2dp"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/examplessize"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/dataItemsize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewModel.dataItem.size)}"
+            app:layout_constraintTop_toBottomOf="@id/alternativeTranslationssize"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="2dp"
+            android:textSize="12sp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
