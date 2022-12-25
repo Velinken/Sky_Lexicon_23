@@ -1,6 +1,7 @@
 // bildgradle Project
 // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics?index=..%2F..index#7
 // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles#0
+// Velinken 25.12.2022
 buildscript {
     repositories {
         google()
