@@ -18,6 +18,7 @@
 package com.dinadurykina.skylexicon.ui.meanings
 
 import androidx.lifecycle.*
+import com.dinadurykina.skylexicon.launcher.DebugSetting
 import com.dinadurykina.skylexicon.ui.about.SkyHistory
 
 import com.dinadurykina.skylexicon.network.DataItem
@@ -38,7 +39,7 @@ class SkyMeaningsViewModel(
     private val skyHistory: SkyHistory,
     ) : ViewModel() {
     // private val skyRepository = SkyRepository()
-
+    val debugSetting = DebugSetting
     // Вводимое слово связано двухсторонним биндингом с полем
     // наблюдается из фрагмента и при изменении зовется поиск
     val ids: MutableLiveData<String> = MutableLiveData<String>(ids)

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.dinadurykina.skylexicon.ui.search.SkySearchViewModel" />
@@ -27,9 +28,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{() -> viewModel.onSearchGo(viewModel.slovo)}"
             tools:ignore="MissingConstraints"
-            android:imeOptions="actionGo"/>
+            android:imeOptions="actionDone"
+            android:onClick="@{() -> viewModel.onSearchGo(viewModel.slovo)}"
+            />
+        <!--  android:onClick="@{() -> viewModel.onSearchGo(viewModel.slovo)}" -->
 
         <TextView
             android:id="@+id/recycler_size"
@@ -37,7 +40,9 @@
             android:layout_height="wrap_content"
             android:text='@{String.valueOf(viewModel.wordsListRecycler.size())}'
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.debugSetting ? View.VISIBLE : View.GONE }"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_sky"

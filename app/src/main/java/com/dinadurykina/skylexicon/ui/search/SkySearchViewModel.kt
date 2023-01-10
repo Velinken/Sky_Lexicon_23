@@ -17,13 +17,18 @@
 
 package com.dinadurykina.skylexicon.ui.search
 
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.*
+import com.dinadurykina.skylexicon.launcher.DebugSetting
 import com.dinadurykina.skylexicon.network.WordRecycler
 import com.dinadurykina.skylexicon.repository.SkyRepository
 import com.dinadurykina.skylexicon.ui.Event
 import com.dinadurykina.skylexicon.ui.about.SkyHistory
 import com.dinadurykina.skylexicon.ui.playSound
 import kotlinx.coroutines.launch
+
 
 /**
  * The [ViewModel] that is attached to the [SkySearchFragment].
@@ -37,7 +42,7 @@ class SkySearchViewModel(
     // Вводимое слово связано двухсторонним биндингом с полем
     // наблюдается из фрагмента и при изменении зовется поиск
     val slovo: MutableLiveData<String> = MutableLiveData<String>(slovo) //("Chair")
-
+    val debugSetting = DebugSetting
 
 
    // Для Json нерасшифрованного (отладка)

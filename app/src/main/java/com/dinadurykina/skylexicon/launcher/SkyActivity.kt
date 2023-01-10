@@ -74,7 +74,11 @@ class SkyActivity : AppCompatActivity() {
         // По уму этот обработчик надо бы переместить в SkyActivityViewModel, но технологии биндинг для меню не создано
         // Обещают сделать, тогда переместим в ViewModel
         return when (item.itemId) {
-            R.id.action_settings -> {Toast.makeText(applicationContext, "Пошел Settings", Toast.LENGTH_LONG).show(); true }
+            R.id.action_settings -> {Toast.makeText(applicationContext, "Settings", Toast.LENGTH_LONG).show(); true }
+            R.id.action_debug -> {
+                DebugSetting = DebugSetting.not()
+                Toast.makeText(applicationContext, "Debug = $DebugSetting", Toast.LENGTH_LONG).show()
+                true }
             else -> super.onOptionsItemSelected(item)
         }
     }

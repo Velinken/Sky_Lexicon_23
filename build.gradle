@@ -1,17 +1,12 @@
 // bildgradle Project
 // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics?index=..%2F..index#7
 // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-test-doubles#0
-// Velinken 25.12.2022
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20" //1.7.20" //1.6.10" //  "1.5.30-RC for result
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
-    }
+// 10.01.2023
+plugins {
+    id 'com.android.application' version '7.3.1' apply false
+    id 'com.android.library' version '7.3.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.8.0' apply false
+    id 'androidx.navigation.safeargs.kotlin'  version '2.5.3' apply false  // 2.6.0-alpha04
 }
 
 task clean(type: Delete) {

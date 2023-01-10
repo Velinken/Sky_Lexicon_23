@@ -9,7 +9,7 @@ import androidx.core.net.toUri
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.dinadurykina.skylexicon.R
-
+// Окошко чтобы показать увеличенное изображение и назад
 // AlertDialog Kotlin URI
 // //d2zkmv5t5kao9.cloudfront.net/images/b905a618b56c721ce683164259ac02c4.jpeg?w=640&h=480
 class DialogImageFragment : DialogFragment() {

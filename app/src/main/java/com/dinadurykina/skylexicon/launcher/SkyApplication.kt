@@ -40,6 +40,7 @@ import timber.log.Timber
  * А можно много потоков стартовать, а можно службы и сервисы здесь стартовать, но в фоне
  * А тогда они будут работать параллельно с клиентской активити.
  */
+var DebugSetting = false
 // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics?index=..%2F..index#4
 class SkyApplication : Application() {
     // Важно, чтобы вы всегда создавали только один экземпляр класса репозитория и истории
