@@ -7,9 +7,9 @@
     <application
         android:name="com.dinadurykina.skylexicon.launcher.SkyApplication"
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/skylexicon234"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/skylexicon234"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sky"
         tools:targetApi="m">

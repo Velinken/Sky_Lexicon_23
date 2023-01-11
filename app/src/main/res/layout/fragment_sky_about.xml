@@ -209,7 +209,7 @@
                 android:layout_marginTop="@dimen/layout_margin_about"
                 android:contentDescription="@string/yelllow_star"
                 android:onClick="@{() -> viewModel.onStarClick()}"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
+                app:srcCompat="@drawable/skylexicon23492" />
 
             <ScrollView
                 android:id="@+id/bio_scroll"
@@ -223,7 +223,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lineSpacingMultiplier="1.2"
-                    android:text="@string/bio" />
+                    android:text="@string/bio"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_about"/>
+               
             </ScrollView>
 
         </LinearLayout>
